@@ -1,0 +1,10 @@
+﻿  GameSceneUI.cpp
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(18): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(23): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(31): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(32): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(33): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(34): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\ea_folder\deep_suicide_c++_ea\deep_suicide\gamesceneui.cpp(35): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  DEEP_SUICIDE.vcxproj -> C:\Users\USER\Desktop\EA_FOLDER\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
+  DEEP_SUICIDE.vcxproj -> C:\Users\USER\Desktop\EA_FOLDER\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)
