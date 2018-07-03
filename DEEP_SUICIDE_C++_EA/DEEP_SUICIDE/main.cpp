@@ -69,19 +69,7 @@ void GameSceneDraw() {
 void StartSceneMenu() {
 	//Top
 	
-	glBegin(GL_POLYGON);
-	glColor3f(0.2, 0.2, 0.1);
-	glVertex3f(0, 0, 0.2);
-	glVertex3f(0, 200, 0.2);
-	glVertex3f(320, 0, 0.2);
-	glEnd();
-
-	glBegin(GL_POLYGON);
-	glColor3f(0.2, 0.0, 0.0);
-	glVertex3f(0, 0, 0.2);
-	glVertex3f(0, 250, 0.2);
-	glVertex3f(370, 0, 0.2);
-	glEnd();
+	
 
 	//TOP outside tile
 	glBegin(GL_POLYGON);
@@ -105,26 +93,36 @@ void StartSceneMenu() {
 	glRasterPos3f(330, 760,0.4);
 	string Title = "SUICIDE DEEPLY";
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)Title.c_str());
+	//Left
+	
+
+	glBegin(GL_POLYGON);
+	glColor3f(0.2, 0.0, 0.0);
+	glVertex3f(0, 0, 0.2);
+	glVertex3f(0, 400, 0.2);
+	glVertex3f(400, 0, 0.2);
+	glEnd();
+
 
 	//Right
 	glBegin(GL_POLYGON);
 	glColor3f(0.2, 0.2, 0.2);
 	glVertex3f(800, 0, 0.2);
-	glVertex3f(320, 0, 0.2);
-	glVertex3f(800, 200, 0.2);
+	glVertex3f(400, 0, 0.2);
+	glVertex3f(800, 400, 0.2);
 	glEnd();
 	glTranslatef(0, -10, 0);
 
 	//GameStartButton
 	
 		glPushMatrix();
-		glTranslatef(205, 200, 0);
+		glTranslatef(270,420, 0);
 		MB.StartButton();
 
-		glTranslatef(0, -40, 0);
+		glTranslatef(0, -80, 0);
 		MB.DifficultButton();
 
-		glTranslatef(0, -40, 0);
+		glTranslatef(0, -80, 0);
 		MB.QuitButton();
 
 		glPopMatrix();
@@ -146,13 +144,14 @@ void display() {
 	//640W,480H; WC 320; HC 240;
 	//Draw Player Home
 	glPushMatrix();
+	glTranslatef(255,306, 0);
 	glLineWidth(3);
 	glBegin(GL_LINE_LOOP);
 	glColor3f(0, 0, 0);
-	glVertex3f(220, 140, 0);
-	glVertex3f(420, 140, 0);
-	glVertex3f(420, 340, 0);
-	glVertex3f(220, 340, 0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 280, 0);
+	glVertex3f(280, 280, 0);
+	glVertex3f(280, 0, 0);
 	glEnd();
 	glPopMatrix();
 
