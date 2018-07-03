@@ -33,6 +33,7 @@ void PlayerBullet::BulletDraw(){
 
 void PlayerBullet::BulletReset() {
 	isActive = false;
+	
 	life = 400;
-
+	
 }

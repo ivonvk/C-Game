@@ -39,6 +39,7 @@ float player_x = 0.0f;
 float playerX_force = 0.0f;
 int playerForBac = 0;
 int playerLR = 0;
+int enemyNum = 0;
 int Wave = 1;
 int mouse_x, mouse_y;
 float fireTimer;
@@ -53,7 +54,15 @@ void initRendering() {
 }
 
 void gameStart() {
-	enemy[0].isActive = true;
+	if (enemyNum < Wave * 10) {
+		for (int i = 0;i < Wave * 10;i++) {
+			if (!enemy[i].isActive) {
+				enemy[i].isActive = true;
+				enemy[i].x = -rand() % 800 + 280;
+				enemy[i].y = -rand() %800 + 280;
+			}
+		}
+	}
 }
 
 void cameraSetup(int w, int h) {
@@ -167,7 +176,7 @@ void display() {
 	if(Scene!=0) {
 		
 		GSUI.TOPUIDRAW();
-		glTranslatef(300, 220, 0);
+		
 		glPushMatrix();
 	
 		glTranslatef(player.x, player.y, 0);
@@ -184,8 +193,10 @@ void display() {
 		}
 		for (int i = 0;i < TotalEnemy;i++) {
 			if (enemy[i].isActive) {
-				
+				glPushMatrix();
+				glTranslatef(enemy[i].x, enemy[i].y, 0);
 				enemy[i].EnemyDraw();
+				glPopMatrix();
 			}
 		}
 	}
@@ -289,10 +300,51 @@ void MousePos(int x, int y) {
 
 }
 void inGame() {
+	
 	for (int i = 0;i < 150;i++) {
 		if (enemy[i].isActive) {
-			enemy[i].EnemyUpdate(player.x, player.y);
-			if (abs(enemy[i].x - player.x) <42&& abs(enemy[i].y - player.y) <42){
+			if (800 - enemy[i].x>300&&
+				800 - enemy[i].x<550 &&
+				800 - enemy[i].y>250&&
+				800 - enemy[i].y<500
+				) {
+				if (800 - enemy[i].y < 250) {
+					enemy[i].EnemyUpdate(rand() % 800 + 280, -rand() % 800 + 280);
+					cout << "RB -1" << endl;
+				}else if(800 - enemy[i].y > 450) {
+
+					//enemy[i].EnemyUpdate(rand() % 800 + 280, rand() % 800 + 280);
+					enemy[i].y -= rand() % 20 + 1;
+					cout << "RB -2" << endl;
+				}
+				else {
+					enemy[i].EnemyUpdate(rand() % 800 + 280, rand() % 800 + 280);
+				}
+				
+			}else if (
+				800 - enemy[i].x>400 &&
+				800 - enemy[i].x<600 &&
+				800 - enemy[i].y>250 &&
+				800 - enemy[i].y<500
+				
+				) {
+				
+				if (800 - enemy[i].y > 250) {
+					enemy[i].EnemyUpdate(-rand() % 800 + 280, -rand() % 800 + 280);
+					cout << "LB -1" << endl;
+				}
+				else {
+					enemy[i].EnemyUpdate(-rand() % 800 + 280, -rand() % 800 + 280);
+					cout << "LB -2" << endl;
+				}
+				
+				
+			}
+			else {
+				
+				enemy[i].EnemyUpdate(player.x, player.y);
+			}
+			if (abs(enemy[i].x - player.x ) <42&& abs(enemy[i].y - player.y) <42){
 				if (enemy[i].atkSpeed <= 0) {
 					cout << "Enemy Attack Player" << endl;
 					GSUI.TOPUIUPDATE(enemy[i].Dmg, 1);
@@ -304,39 +356,49 @@ void inGame() {
 
 	}
 	for (int i = 0;i < TotalBullet;i++) {
+		if (PB[i].life > 1) {
+			PB[i].life -= 0.3;
+		}
+		else {
+			PB[i].isFired = false;
+		}
 		if (PB[i].isActive) {
-			PB[i].BulletUpdate();
-			if (PB[i].life > 5) {
-				PB[i].life -= 1;
-			}
-			else {
-				PB[i].BulletReset();
-			}
+			
 			for (int j = 0;j < TotalEnemy;j++) {
-				if (enemy[j].isActive&&PB[i].isActive) {
-					if (abs(enemy[j].x - PB[i].x) <35 && abs(enemy[j].y - PB[i].y) <35) {
-						if (enemy[j].HP - PB[i].Dmg > 0) {
-							enemy[j].HP -= PB[i].Dmg;
-							
-							PB[i].life = 1.2;
+				if (enemy[j].isActive && !PB[i ].isFired) {
+					if (abs(enemy[j].x - PB[i].x) < 35 && abs(enemy[j].y - PB[i].y) < 35) {
+
+						if (enemy[j ].HP - PB[i ].Dmg > 0) {
+							PB[i].life = 0.5;
+							enemy[j ].HP -= PB[i ].Dmg;
 							cout << "Shooted" << endl;
+							PB[i].isFired = true;
+							PB[i].isActive = false;
+							
 						}
 						else {
-						
-							PB[i].life = 1.2;
-							cout << "Enemy Dead" << endl;
-							enemy[j].EnemyReset();
+								PB[i ].life = 0.5;
+								cout << "Enemy Dead" << endl;
+								enemy[j ].EnemyReset();
+								PB[i].isFired = true;
+								PB[i].isActive = false;
+								
 						}
+						
 					}
+
+
 				}
+
 			}
 		}
+		PB[i].BulletUpdate();
 	}
 	if (GetKeyState(VK_F) & 0x8000 && fireTimer <= 0) {
 		fireTimer = 6;
 		for (int i = 0;i < TotalBullet;i++) {
 			if (!PB[i].isActive) {
-				
+				cout << PB[i].isFired << endl;
 				PB[i].isActive = true;
 				if (PB[i].isActive) {
 					PB[i].x = player.x+20;
@@ -371,7 +433,7 @@ void inGame() {
 					}
 					else if (player.facing == 3) {
 						if (randNum > 50) {
-							PB[i].y_Speed = -rand() % 3 + 0.2f;
+							PB[i].y_Speed = -rand() % 3+ 0.2f;
 						}
 						else {
 							PB[i].y_Speed = rand() % 3 + 0.2f;

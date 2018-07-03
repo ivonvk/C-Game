@@ -13,9 +13,9 @@ Enemy::~Enemy()
 {
 }
 void Enemy::EnemyDraw() {
-	glTranslatef(x,y, 0);
+
 	glBegin(GL_POLYGON);
-	glColor3f(1, 0, 0);
+	glColor3f(color, 0, 0);
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 35, 0);
 	glVertex3f(35, 35, 0);
@@ -32,21 +32,28 @@ void Enemy::EnemyReset() {
 void Enemy::EnemyUpdate(int player_x, int player_y) {
 	int xmore = 0;
 		int ymore = 0;
+	
+		int bouncing = 0;
+		
 	if (player_x > 0) {
 		xmore = -30;
+		bouncing = -rand() % 3 + 1;
 	}
 	else {
 		xmore = 30;
+		bouncing = rand() % 3 + 1;
 	}
 	if (player_y > 0) {
 		ymore = -30;
+		bouncing = -rand() % 3 + 1;
 	}
 	else {
 		ymore = 30;
+		bouncing = rand() % 3 + 1;
 	}
-		x += (x - player_x+xmore)*3*-0.005;
+		x += (x - player_x+xmore)*3*-0.005 + bouncing;
 
-		y += (y - player_y+ ymore)*3*-0.005;
+		y += (y - player_y+ ymore)*3*-0.005 + bouncing;
 
 	if (atkSpeed > 0) {
 		atkSpeed -= 1;

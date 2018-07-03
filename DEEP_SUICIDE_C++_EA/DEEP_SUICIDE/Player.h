@@ -6,8 +6,8 @@ public:
 	Player();
 	~Player();
 public:
-	float x = 0;
-	float y = 0;
+	float x = 300;
+	float y =220;
 	
 	int facing ;
 	Enemy enemy;
