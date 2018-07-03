@@ -30,12 +30,23 @@ void Enemy::EnemyReset() {
 	y_Speed = 0;
 }
 void Enemy::EnemyUpdate(int player_x, int player_y) {
-	
+	int xmore = 0;
+		int ymore = 0;
+	if (player_x > 0) {
+		xmore = -20;
+	}
+	else {
+		xmore = 20;
+	}
+	if (player_y > 0) {
+		ymore = -20;
+	}
+	else {
+		ymore = 20;
+	}
+		x += (x - player_x+xmore)*3*-0.005;
 
-
-		x += (x - player_x)*1.5*-0.015;
-
-		y += (y - player_y)*1.5*-0.015;
+		y += (y - player_y+ ymore)*3*-0.005;
 
 	if (atkSpeed > 0) {
 		atkSpeed -= 1;

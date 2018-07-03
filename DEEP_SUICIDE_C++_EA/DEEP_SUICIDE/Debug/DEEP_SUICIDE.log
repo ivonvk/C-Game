@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  main.cpp
 c:\users\ccm\ea_work\deep_suicide_c++_ea\deep_suicide\main.cpp(73): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
 c:\users\ccm\ea_work\deep_suicide_c++_ea\deep_suicide\main.cpp(74): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
@@ -27,3 +28,11 @@ c:\users\ccm\ea_work\deep_suicide_c++_ea\deep_suicide\main.cpp(308): warning C42
 c:\users\ccm\ea_work\deep_suicide_c++_ea\deep_suicide\main.cpp(331): warning C4305: '=': truncation from 'double' to 'float'
 c:\users\ccm\ea_work\deep_suicide_c++_ea\deep_suicide\main.cpp(336): warning C4305: '=': truncation from 'double' to 'float'
   DEEP_SUICIDE.vcxproj -> C:\Users\CCM\ea_work\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
+=======
+﻿  Enemy.cpp
+c:\users\user\desktop\eawork\deep_suicide_c++_ea\deep_suicide\enemy.cpp(16): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\user\desktop\eawork\deep_suicide_c++_ea\deep_suicide\enemy.cpp(47): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+c:\users\user\desktop\eawork\deep_suicide_c++_ea\deep_suicide\enemy.cpp(49): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  DEEP_SUICIDE.vcxproj -> C:\Users\USER\Desktop\EAWORK\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
+  DEEP_SUICIDE.vcxproj -> C:\Users\USER\Desktop\EAWORK\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)
+>>>>>>> origin/master
