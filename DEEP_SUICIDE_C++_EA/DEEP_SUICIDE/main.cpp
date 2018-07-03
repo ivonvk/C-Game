@@ -271,7 +271,7 @@ void inGame() {
 	for (int i = 0;i < 150;i++) {
 		if (enemy[i].isActive) {
 			enemy[i].EnemyUpdate(player.x, player.y);
-			if (abs(enemy[i].x - player.x) <40&& abs(enemy[i].y - player.y) <40){
+			if (abs(enemy[i].x - player.x) <42&& abs(enemy[i].y - player.y) <42){
 				if (enemy[i].atkSpeed <= 0) {
 					cout << "Enemy Attack Player" << endl;
 					GSUI.TOPUIUPDATE(enemy[i].Dmg, 1);

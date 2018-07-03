@@ -6,7 +6,7 @@ public:
 	~Enemy();
 public:
 	bool isActive = false;
-	int HP = 999;
+	int HP = 50;
 	int x, y;
 	float x_Speed = 0;
 	float y_Speed = 0;
