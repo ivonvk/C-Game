@@ -1,11 +1,11 @@
 /*  Filename:       main.cpp
     Description:    MET4335 - Lab05
 */
+#include "GL/freeglut.h"
 #include <windows.h>  // include all the windows headers
 #include<windowsx.h>
 #include "MenuButton.h"
 #include "GameSceneUI.h"
-#include "GL/freeglut.h"
 #include"PlayerBullet.h"
 #include"Enemy.h"
 #include <iostream>
@@ -18,6 +18,9 @@
 #define VK_A 65
 #define VK_D 68
 #define VK_F 70
+
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 800
 
 using namespace std;
 int Scene = 0;
@@ -54,11 +57,11 @@ void gameStart() {
 }
 
 void cameraSetup(int w, int h) {
-    glViewport(0, 0, 640, 480);
+    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     glMatrixMode(GL_PROJECTION);                // select projection matrix
     glLoadIdentity();                           // reset projection matrix
     //gluPerspective(100.0, 1, 1.0, 100.0);        // set up a perspective projection matrix
-	gluOrtho2D(0, 640, 0, 480);
+	gluOrtho2D(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
 }
 void GameSceneDraw() {
 	
@@ -80,34 +83,35 @@ void StartSceneMenu() {
 	glVertex3f(370, 0, 0.2);
 	glEnd();
 
+	//TOP outside tile
 	glBegin(GL_POLYGON);
 	glColor3f(0.3, 0.3, 1);
-	glVertex3f(0, 480, 0.2);
-	glVertex3f(0, 410, 0.2);
-	glVertex3f(640, 410, 0.2);
-	glVertex3f(640, 480, 0.2);
+	glVertex3f(0, 800, 0.2);
+	glVertex3f(0, 740, 0.2);
+	glVertex3f(800, 740, 0.2);
+	glVertex3f(800, 800, 0.2);
 	glEnd();
 
+	//TOP inside tile
 	glBegin(GL_POLYGON);
-	glColor3f(0.2, 0.2,0.3);
-	glVertex3f(10, 470, 0.3);
-	glVertex3f(10, 420, 0.3);
-	glVertex3f(630, 420, 0.3);
-	glVertex3f(630, 470, 0.3);
+	glColor3f(0.2, 0.2, 0.3);
+	glVertex3f(10, 790, 0.3);
+	glVertex3f(10, 750, 0.3);
+	glVertex3f(790, 750, 0.3);
+	glVertex3f(790, 790, 0.3);
 	glEnd();
-
+	//text
 	glColor3f(1, 0, 0);
-	glRasterPos3f(250, 440,0.4);
+	glRasterPos3f(330, 760,0.4);
 	string Title = "SUICIDE DEEPLY";
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)Title.c_str());
-	//Top
 
 	//Right
 	glBegin(GL_POLYGON);
 	glColor3f(0.2, 0.2, 0.2);
-	glVertex3f(640, 0, 0.2);
+	glVertex3f(800, 0, 0.2);
 	glVertex3f(320, 0, 0.2);
-	glVertex3f(640, 200, 0.2);
+	glVertex3f(800, 200, 0.2);
 	glEnd();
 	glTranslatef(0, -10, 0);
 
@@ -136,6 +140,24 @@ void display() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 	//gluLookAt(cam_x, cam_y, 1, cam_x, cam_y, 0, 0, 1, 0);
+
+
+
+	//640W,480H; WC 320; HC 240;
+	//Draw Player Home
+	glPushMatrix();
+	glLineWidth(3);
+	glBegin(GL_LINE_LOOP);
+	glColor3f(0, 0, 0);
+	glVertex3f(220, 140, 0);
+	glVertex3f(420, 140, 0);
+	glVertex3f(420, 340, 0);
+	glVertex3f(220, 340, 0);
+	glEnd();
+	glPopMatrix();
+
+
+
 	if (Scene == 0) {
 		StartSceneMenu();
 
@@ -399,7 +421,7 @@ int main(int argc, char **argv) {
     // init GLUT and create Window
     glutInit(&argc, argv);                      // GLUT initialization
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(640, 480);               // set the window size
+    glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);               // set the window size
 
     // create the window
     glutCreateWindow("Introduction to OpenGL");
