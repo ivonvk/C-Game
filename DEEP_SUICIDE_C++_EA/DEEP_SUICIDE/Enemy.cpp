@@ -33,16 +33,16 @@ void Enemy::EnemyUpdate(int player_x, int player_y) {
 	int xmore = 0;
 		int ymore = 0;
 	if (player_x > 0) {
-		xmore = -20;
+		xmore = -30;
 	}
 	else {
-		xmore = 20;
+		xmore = 30;
 	}
 	if (player_y > 0) {
-		ymore = -20;
+		ymore = -30;
 	}
 	else {
-		ymore = 20;
+		ymore = 30;
 	}
 		x += (x - player_x+xmore)*3*-0.005;
 

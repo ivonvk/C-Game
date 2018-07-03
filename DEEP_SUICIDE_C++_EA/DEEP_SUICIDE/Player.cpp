@@ -31,23 +31,24 @@ void Player::PlayerDraw() {
 void Player::PlayerController() {
 	if (GetKeyState(VK_W) & 0x8000) {
 		facing = 0;
+		
 		y += 5;
-
+		
 	}
 	if (GetKeyState(VK_S) & 0x8000) {
 		facing = 1;
 		y -= 5;
-
+	
 	}
 	if (GetKeyState(VK_A) & 0x8000) {
 		facing = 2;
 		x -= 5;
-
+		
 	}
 	if (GetKeyState(VK_D) & 0x8000) {
 		facing = 3;
 		x += 5;
-
+		
 	}
-
+	
 }
