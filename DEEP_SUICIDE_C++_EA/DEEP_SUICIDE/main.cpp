@@ -165,6 +165,54 @@ void display() {
 	glPopMatrix();
 
 
+	//Draw Wall Block Left
+	glPushMatrix();
+	glTranslatef(220,305,0);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex2f(0, 0);
+	glVertex2f(0, 282);
+	glVertex2f(35, 282);
+	glVertex2f(35, 0);
+	glEnd();
+	glPopMatrix();
+
+	//Draw Wall Block Left
+	glPushMatrix();
+	glTranslatef(535, 305, 0);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex2f(0, 0);
+	glVertex2f(0, 282);
+	glVertex2f(35, 282);
+	glVertex2f(35, 0);
+	glEnd();
+	glPopMatrix();
+
+	//Draw Wall Block Bot
+	glPushMatrix();
+	glTranslatef(220, 270, 0);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex2f(0, 0);
+	glVertex2f(0, 35);
+	glVertex2f(350, 35);
+	glVertex2f(350, 0);
+	glEnd();
+	glPopMatrix();
+
+	//Draw Wall Block Top
+	glPushMatrix();
+	glTranslatef(220, 585, 0);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex2f(0, 0);
+	glVertex2f(0, 35);
+	glVertex2f(350, 35);
+	glVertex2f(350, 0);
+	glEnd();
+	glPopMatrix();
+
 
 	if (Scene == 0) {
 		StartSceneMenu();

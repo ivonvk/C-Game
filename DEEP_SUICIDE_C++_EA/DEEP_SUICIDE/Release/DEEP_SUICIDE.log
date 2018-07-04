@@ -1,1 +1,3 @@
-﻿
+﻿  Generating code
+c:\users\170240964\desktop\ea_work\deep_suicide_c++_ea\deep_suicide\playerbullet.cpp : fatal error C1301: error accessing program database C:\Users\170240964\Desktop\EA_WORK\DEEP_SUICIDE_C++_EA\Release\DEEP_SUICIDE.ipdb, invalid format, please delete and rebuild
+LINK : fatal error LNK1257: code generation failed
