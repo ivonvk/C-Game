@@ -2,6 +2,7 @@
     Description:    MET4335 - Lab05
 */
 #include "GL/freeglut.h"
+#include "Item_Pickup.h"
 #include <windows.h>  // include all the windows headers
 #include<windowsx.h>
 #include "MenuButton.h"
@@ -46,20 +47,45 @@ float fireTimer;
 Player player;
 PlayerBullet PB[150];
 MenuButton MB;
-GameSceneUI GSUI;
+GameSceneUI inGameUI;
 Enemy enemy[150];
-
+Item_Pickup objItem[15];
 void initRendering() {
     glEnable(GL_DEPTH_TEST);                    // test 3D depth
 }
 
 void gameStart() {
+	//PLAYER START LOCATION
+	player.x = 383;
+	player.y = 420;
+	//ENEMY SPAWNING
 	if (enemyNum < Wave * 10) {
 		for (int i = 0;i < Wave * 10;i++) {
 			if (!enemy[i].isActive) {
 				enemy[i].isActive = true;
+				//ENEMY LOCATION RANDOMLY
 				enemy[i].x = -rand() % 800 + 280;
 				enemy[i].y = -rand() %800 + 280;
+			}
+		}
+		for (int i = 0;i < 15;i++) {
+			objItem[i].isActive = true;
+			//ITEM SPWANING LOCATION AND TYPE RANDOMLY
+			int RandItem = rand() % 100 + 1;
+			if (RandItem > 70) {
+				objItem[i].x = rand() % 200 + 0;
+				objItem[i].y = rand() % 450 +50;
+				objItem[i].iType = 0;
+			}
+			else if(RandItem >50){
+				objItem[i].x = rand() % 500 + 450;
+				objItem[i].y = rand() % 450 + 50;
+				objItem[i].iType = 1;
+			}
+			else {
+				objItem[i].x = rand() % 200 + 0;
+				objItem[i].y = rand() % 450 + 50;
+				objItem[i].iType = 2;
 			}
 		}
 	}
@@ -76,10 +102,6 @@ void GameSceneDraw() {
 	
 }
 void StartSceneMenu() {
-	//Top
-	
-	
-
 	//TOP outside tile
 	glBegin(GL_POLYGON);
 	glColor3f(0.3, 0.3, 1);
@@ -88,7 +110,6 @@ void StartSceneMenu() {
 	glVertex3f(800, 740, 0.2);
 	glVertex3f(800, 800, 0.2);
 	glEnd();
-
 	//TOP inside tile
 	glBegin(GL_POLYGON);
 	glColor3f(0.2, 0.2, 0.3);
@@ -97,14 +118,12 @@ void StartSceneMenu() {
 	glVertex3f(790, 750, 0.3);
 	glVertex3f(790, 790, 0.3);
 	glEnd();
-	//text
+	//TITLE TEXT
 	glColor3f(1, 0, 0);
 	glRasterPos3f(330, 760,0.4);
 	string Title = "SUICIDE DEEPLY";
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)Title.c_str());
-	//Left
-	
-
+	//Left POLYGON
 	glBegin(GL_POLYGON);
 	glColor3f(0.2, 0.0, 0.0);
 	glVertex3f(0, 0, 0.2);
@@ -113,7 +132,7 @@ void StartSceneMenu() {
 	glEnd();
 
 
-	//Right
+	//Right POLYGON
 	glBegin(GL_POLYGON);
 	glColor3f(0.2, 0.2, 0.2);
 	glVertex3f(800, 0, 0.2);
@@ -146,7 +165,7 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear Screen and Depth Buffer
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-	//gluLookAt(cam_x, cam_y, 1, cam_x, cam_y, 0, 0, 1, 0);
+
 
 
 
@@ -212,35 +231,37 @@ void display() {
 	glVertex2f(350, 0);
 	glEnd();
 	glPopMatrix();
-
-
+	//IF PLAYER ENTER THE FIRST SCENE OF GAME SHOULD BE START SCENE MENU AND DRAWING UI
 	if (Scene == 0) {
 		StartSceneMenu();
-
 	}
-	
-
-	
+	//IF PLAYER START THE GAME THEN DRAWING UI PLAYER ENEMY AND OBJECT
 	if(Scene!=0) {
-		
-		GSUI.TOPUIDRAW();
-		
+		inGameUI.TOP_UI_DRAW();
+		//DRAWING PLAYER IF MOVING
 		glPushMatrix();
-	
 		glTranslatef(player.x, player.y, 0);
-	
 		player.PlayerDraw();
-		
-		
-		
 		glPopMatrix();
+
+		for (int i = 0;i < 15;i++) {
+			if (objItem[i].isActive) {
+				//GIVE A LOCAL TRANSLATE TO EVERY ITEM AND SET LOCATION OF THEM
+				glPushMatrix();
+				glTranslatef(objItem[i].x, objItem[i].y, 0);
+				objItem[i].ItemDraw();
+				glPopMatrix();
+			}
+		}
 		for (int i = 0;i < TotalBullet;i++) {
+			//DRAWING BULLET FLYING IF SHOOTED
 			if (PB[i].isActive) {
 				PB[i].BulletDraw();
 			}
 		}
 		for (int i = 0;i < TotalEnemy;i++) {
 			if (enemy[i].isActive) {
+				//DRAWING ENEMY MOVING
 				glPushMatrix();
 				glTranslatef(enemy[i].x, enemy[i].y, 0);
 				enemy[i].EnemyDraw();
@@ -248,78 +269,18 @@ void display() {
 			}
 		}
 	}
-	
-	
-	//glTranslatef(0, 0, -10);
-	
-
-
-
-	
-	
 	glutSwapBuffers();
-	
-
-	
-	
 }
 
 
 void keyboard(unsigned char key, int mousePositionX, int mousePositionY) {
-	/*printf("key_code =%d  \n", key);
-	int mod = glutGetModifiers();
-	
-		switch (key) {
-		case 27:   // [ESCAPE] key
-			exit(0);
-			break;
-		case 119:
-			
-			playerY_force = 0.5;
-			playerForBac = 1;
-			cout << "UP" << endl;
-			break;
-		case 115:
-			playerY_force = 0.5;
-			playerForBac = 2;
-			cout << "DOWN" << endl;
-			break;
-		case 97:
-			playerX_force = 0.5;
-			playerLR = 2;
-			cout << "LEFT" << endl;
-			break;
-		case 100:
-			playerX_force = 0.5;
-			playerLR = 1;
-			cout << "RIGHT" << endl;
-			break;
-
-
-
-
-
-		default: break;
-		
-		
-}*/
 }
 
-void CameraMoving() {
-	if (GetKeyState(VK_UP) & 0x8000) {
-		cam_y += 20;
-	}
-	if (GetKeyState(VK_DOWN) & 0x8000) {
-		cam_y -= 20;
-	}
-	if (GetKeyState(VK_LEFT) & 0x8000) {
-		cam_x -= 20;
-	}
-	if (GetKeyState(VK_RIGHT) & 0x8000) {
-		cam_x += 20;
-	}
-}
 void inTitle() {
+	//CONFIRM PLAYER PRESS BUTTON 
+	/*	THE FIRST BUTTON CASE 0 IS START GAME
+		THE SECOND BUTTON CASE 1 IS SET THE GAME MODE
+		THE THIRD BUTTON CASE 2 IS QUIT THE GAME	*/
 	if (GetKeyState(VK_F) & 0x8000&&MB.btnTimer<=0) {
 		MB.btnTimer = 5;
 		switch (MB.btnNumMenu) {
@@ -335,27 +296,51 @@ void inTitle() {
 				MB.diffNum = 0;
 			}
 			break;
-		
 		case 2:
 			exit(1);
 			break;
 		}
 	}
 }
-void MousePos(int x, int y) {
-	mouse_x = x;
-	mouse_y = 480 - y;
 
-}
 void inGame() {
-	
+	//CHECK EVERY ITEM AND GET IF PLAYER NEARBY THEM
+	for (int i = 0;i < 15;i++) {
+		if (objItem[i].isActive) {
+			if (abs(objItem[i].x - player.x) < 42 && abs(objItem[i].y - player.y) < 42) {
+				switch (objItem[i].iType) {
+					/*	ITEM 0 CASE 0 IS GET MORE AMMO
+						ITEM 1 CASE 1 IS RESTORE PLAYER HP
+						ITEM 2 CASE 2 IS GET RESOURCES TO REPAIR HOUSE	*/
+				case 0:
+					if (player.MaxAmmo + 20 <= 100) {
+						player.MaxAmmo += 20;
+						objItem[i].isActive = false;
+					}
+					break;
+				case 1:
+					if (player.HP+ 10 <= 100) {
+						player.HP += 10;
+						objItem[i].isActive = false;
+					}
+					break;
+				case 2:
+					glColor3f(1, 1, 0);
+					break;
+				}
+			}
+		}
+	}
+	//DETECT ENEMY AND BLOCK IF THEY TRY TO ENTER THE HOUSE
 	for (int i = 0;i < 150;i++) {
 		if (enemy[i].isActive) {
+			//TOP AND RIGHT BOX BLOCKING ENEMY
 			if (800 - enemy[i].x>300&&
 				800 - enemy[i].x<550 &&
 				800 - enemy[i].y>250&&
 				800 - enemy[i].y<500
 				) {
+				//KNOCKBACK ENEMY
 				if (800 - enemy[i].y < 250) {
 					enemy[i].EnemyUpdate(rand() % 800 + 280, -rand() % 800 + 280);
 					cout << "RB -1" << endl;
@@ -369,14 +354,16 @@ void inGame() {
 					enemy[i].EnemyUpdate(rand() % 800 + 280, rand() % 800 + 280);
 				}
 				
-			}else if (
+			}
+			//BOTTOM AND LEFT BOX BLOCKING ENEMY
+			else if (
 				800 - enemy[i].x>400 &&
 				800 - enemy[i].x<600 &&
 				800 - enemy[i].y>250 &&
 				800 - enemy[i].y<500
 				
 				) {
-				
+				//KNOCKBACK ENEMY
 				if (800 - enemy[i].y > 250) {
 					enemy[i].EnemyUpdate(-rand() % 800 + 280, -rand() % 800 + 280);
 					cout << "LB -1" << endl;
@@ -389,13 +376,14 @@ void inGame() {
 				
 			}
 			else {
-				
+				//IF NOT ENTERING HOUSE THEN FOLLOW AND ATTACK PLAYER
 				enemy[i].EnemyUpdate(player.x, player.y);
 			}
+			//DETECT IF ENEMY NEARBY PLAYER AND GIVE DAMAGE TO HIM
 			if (abs(enemy[i].x - player.x ) <42&& abs(enemy[i].y - player.y) <42){
 				if (enemy[i].atkSpeed <= 0) {
 					cout << "Enemy Attack Player" << endl;
-					GSUI.TOPUIUPDATE(enemy[i].Dmg, 1);
+					inGameUI.TOP_UI_UPDATE(enemy[i].Dmg, Wave,player.Ammo, player.MaxAmmo,player.Reloading);
 					enemy[i].atkSpeed = 5.0f;
 				}
 			}
@@ -403,7 +391,9 @@ void inGame() {
 		}
 
 	}
+	//EVERY BULLET OPERATING
 	for (int i = 0;i < TotalBullet;i++) {
+		//BULLET RESET AFTER SHOOTED
 		if (PB[i].life > 1) {
 			PB[i].life -= 0.3;
 		}
@@ -414,8 +404,9 @@ void inGame() {
 			
 			for (int j = 0;j < TotalEnemy;j++) {
 				if (enemy[j].isActive && !PB[i ].isFired) {
+					//IF BULLET SHOOTED AND NEARBY ENEMY THEN DO FUNCTION
 					if (abs(enemy[j].x - PB[i].x) < 35 && abs(enemy[j].y - PB[i].y) < 35) {
-
+						//GIVE DAMAGE TO ENEMY IF ENEMY HP LAGRE THEN THE DAMAGE
 						if (enemy[j ].HP - PB[i ].Dmg > 0) {
 							PB[i].life = 0.5;
 							enemy[j ].HP -= PB[i ].Dmg;
@@ -424,6 +415,7 @@ void inGame() {
 							PB[i].isActive = false;
 							
 						}
+						//ENEMY DEAD IF DAMAGE LAGRE THEN ENEMY HP
 						else {
 								PB[i ].life = 0.5;
 								cout << "Enemy Dead" << endl;
@@ -440,80 +432,113 @@ void inGame() {
 
 			}
 		}
+		//BULLET FLYING IF NOTHINGS DETECTED
 		PB[i].BulletUpdate();
 	}
+	//PLAYER RELOAD AMMO TIMER
+	if (player.Reloading > 0) {
+		player.Reloading -= 1;
+	}
+	//PRESS F AND FIRETIMER IS 0 THEN SPAWN BULLET TO DIRCTION WHICH IS PLAYER FACING OF 
 	if (GetKeyState(VK_F) & 0x8000 && fireTimer <= 0) {
-		fireTimer = 6;
-		for (int i = 0;i < TotalBullet;i++) {
-			if (!PB[i].isActive) {
-				cout << PB[i].isFired << endl;
-				PB[i].isActive = true;
-				if (PB[i].isActive) {
-					PB[i].x = player.x+20;
-					PB[i].y = player.y+20;
-					int randNum = rand() % 100 + 1;
-					if (player.facing == 0) {
-						if (randNum > 50) {
-							PB[i].x_Speed = -rand() % 3+ 0.2f;
-						}else {
-							PB[i].x_Speed = rand() % 3 + 0.2f;
+		//IF PLAYER AT LEAST HAS 1 AMMO THEN DO FUNCTION
+		if (player.Ammo - 1 >= 0) {
+			//IF PLAYER RELOAD AMMO TIMER IS 0 THEN DO ACTION
+			if (player.Reloading <= 0) {
+				//DECREASE AMMO
+				player.Ammo -= 1;
+				//SET FIRE RATE DELAY
+				fireTimer = 6;
+
+				//DECIDE BULLET DIRCTION AND RANDOM FIRE LINE
+				for (int i = 0;i < TotalBullet;i++) {
+					if (!PB[i].isActive) {
+						cout << PB[i].isFired << endl;
+						PB[i].isActive = true;
+						if (PB[i].isActive) {
+							PB[i].x = player.x + 20;
+							PB[i].y = player.y + 20;
+							int randNum = rand() % 100 + 1;
+							if (player.facing == 0) {
+								if (randNum > 50) {
+									PB[i].x_Speed = -rand() % 3 + 0.2f;
+								}
+								else {
+									PB[i].x_Speed = rand() % 3 + 0.2f;
+								}
+								PB[i].y_Speed = 20;
+
+							}
+							else if (player.facing == 1) {
+								if (randNum > 50) {
+									PB[i].x_Speed = -rand() % 3 + 0.2f;
+								}
+								else {
+									PB[i].x_Speed = rand() % 3 + 0.2f;
+								}
+								PB[i].y_Speed = -20;
+							}
+							else if (player.facing == 2) {
+								if (randNum > 50) {
+									PB[i].y_Speed = -rand() % 3 + 0.2f;
+								}
+								else {
+									PB[i].y_Speed = rand() % 3 + 0.2f;
+								}
+								PB[i].x_Speed = -20;
+							}
+							else if (player.facing == 3) {
+								if (randNum > 50) {
+									PB[i].y_Speed = -rand() % 3 + 0.2f;
+								}
+								else {
+									PB[i].y_Speed = rand() % 3 + 0.2f;
+								}
+								PB[i].x_Speed = 20;
+							}
 						}
-						PB[i].y_Speed = 20;
-					
+						break;
 					}
-					else if (player.facing == 1) {
-						if (randNum > 50) {
-							PB[i].x_Speed = -rand() % 3 + 0.2f;
-						}
-						else {
-							PB[i].x_Speed = rand() % 3 + 0.2f;
-						}
-						PB[i].y_Speed = -20;
-					}
-					else if (player.facing == 2) {
-						if (randNum > 50) {
-							PB[i].y_Speed = -rand() % 3 + 0.2f;
-						}
-						else {
-							PB[i].y_Speed = rand() % 3 + 0.2f;
-						}
-						PB[i].x_Speed = -20;
-					}
-					else if (player.facing == 3) {
-						if (randNum > 50) {
-							PB[i].y_Speed = -rand() % 3+ 0.2f;
-						}
-						else {
-							PB[i].y_Speed = rand() % 3 + 0.2f;
-						}
-						PB[i].x_Speed = 20;
-					}
+
+
 				}
-				break;
+
 			}
+		
+
 			
 		}
+		//IF AMMO IS 0 AMMO WILL GET 10 OF MAX AMMO TO BE AMMO
+		else {
+			if (player.MaxAmmo - 10 >= 0) {
+				player.Ammo += 10;
+				player.MaxAmmo -= 10;
+				player.Reloading = 50;
+			}
+
+		}
+		
 	}
+	//IF FIRE RATE IS NOT READY THEN DECRASING
 	else {
 		fireTimer -= 1;
 	}
+	
 }
 
 void update(int value) {
 	glutPostRedisplay();
-	player.PlayerController();
-	
+	player.PlayerMoving();
+	inGameUI.TOP_UI_UPDATE(0, Wave, player.Ammo,player.MaxAmmo, player.Reloading);
+
+	//DETECT SCENE AND DO FUNCTION
 	switch (Scene) {
 	case 0:
-		CameraMoving();
 		MB.TitleOper();
 		inTitle();
-	
 		break;
 	case 1:
-		
 		inGame();
-		
 		break;
 	}
     glutTimerFunc(25, update, ++timerCount);
@@ -546,7 +571,7 @@ int main(int argc, char **argv) {
 
     glutReshapeFunc(cameraSetup);               // resiz window and camera setup
     glutTimerFunc(25, update, ++timerCount);    // Timer function
-	glutPassiveMotionFunc(MousePos);
+	
 	gameStart();
     glutMainLoop();                             // run GLUT mainloop
     return(0);                                  // this line is never reached

@@ -29,7 +29,7 @@ void Player::PlayerDraw() {
 	glEnd();
 }
 
-void Player::PlayerController() {
+void Player::PlayerMoving() {
 	if (GetKeyState(VK_W) & 0x8000) {
 		facing = 0;
 		if (y < 700) {
