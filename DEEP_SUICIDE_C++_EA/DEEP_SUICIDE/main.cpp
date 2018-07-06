@@ -26,6 +26,11 @@
 using namespace std;
 int Scene = 0;
 
+int TopDoor = 200;
+int BottomDoor = 200;
+int LeftDoor = 200;
+int RightDoor = 200;
+
 int TotalBullet = 150;
 int TotalEnemy = 150;
 int timerCount = 0;
@@ -234,9 +239,11 @@ void display() {
 	//IF PLAYER ENTER THE FIRST SCENE OF GAME SHOULD BE START SCENE MENU AND DRAWING UI
 	if (Scene == 0) {
 		StartSceneMenu();
+		inGameUI.MID_SCENE_UI_DRAW();
 	}
 	//IF PLAYER START THE GAME THEN DRAWING UI PLAYER ENEMY AND OBJECT
 	if(Scene!=0) {
+		inGameUI.MID_SCENE_UI_DRAW();
 		inGameUI.TOP_UI_DRAW();
 		//DRAWING PLAYER IF MOVING
 		glPushMatrix();
@@ -304,6 +311,7 @@ void inTitle() {
 }
 
 void inGame() {
+	
 	//CHECK EVERY ITEM AND GET IF PLAYER NEARBY THEM
 	for (int i = 0;i < 15;i++) {
 		if (objItem[i].isActive) {
@@ -334,47 +342,88 @@ void inGame() {
 	//DETECT ENEMY AND BLOCK IF THEY TRY TO ENTER THE HOUSE
 	for (int i = 0;i < 150;i++) {
 		if (enemy[i].isActive) {
+
 			//TOP AND RIGHT BOX BLOCKING ENEMY
-			if (800 - enemy[i].x>250&&
-				800 - enemy[i].x<550 &&
-				800 - enemy[i].y>200&&
-				800 - enemy[i].y<550
-				) {
+			
 				//KNOCKBACK ENEMY
-				if (800 - enemy[i].y < 200) {
-					enemy[i].x += 1;
-					enemy[i].y -= 1;
-		
-				}else if(800 - enemy[i].y > 500) {
-					enemy[i].y -= 1;
-				}
-				else  {
-					enemy[i].x += 1;
-					enemy[i].y += 1;
-				}
-				
-			}
-			//BOTTOM AND LEFT BOX BLOCKING ENEMY
-			else if (
-				800 - enemy[i].x>400 &&
-				800 - enemy[i].x<600 &&
-				800 - enemy[i].y>200 &&
-				800 - enemy[i].y<550
-				) {
-				//KNOCKBACK ENEMY
-				if (800 - enemy[i].y > 200) {
-					enemy[i].x-= 1;
-					enemy[i].y -= 1;
+			if (enemy[i].y > 250&& enemy[i].y < 280) {
+				if (enemy[i].x < 500 && enemy[i].x > 200) {
+					cout << "Bottom " << enemy[i].x << "," << enemy[i].y << endl;
+					if (BottomDoor - enemy[i].Dmg >= 0) {
+						BottomDoor -= enemy[i].Dmg;
+
+						enemy[i].y -= 8;
+
+					}
+					else {
+						enemy[i].EnemyUpdate(player.x, player.y);
+					}
 				}
 				else {
-					enemy[i].x -= 1;
-					enemy[i].y -= 1;
+					enemy[i].EnemyUpdate(player.x, player.y);
+				}
+			}
+			else if (enemy[i].y > 600&& enemy[i].y < 630) {
+				if (enemy[i].x < 500 && enemy[i].x > 200) {
+					cout << "Top " << enemy[i].x << "," << enemy[i].y << endl;
+					if (TopDoor - enemy[i].Dmg >= 0) {
+						TopDoor -= enemy[i].Dmg;
+
+						enemy[i].y += 8;
+
+					}
+					else {
+						enemy[i].EnemyUpdate(player.x, player.y);
+					}
+				}
+				else {
+					enemy[i].EnemyUpdate(player.x, player.y);
+				}
+			}
+			else if (enemy[i].x > 180 && enemy[i].x < 210) {
+				if (enemy[i].y < 600 && enemy[i].y > 200) {
+					cout << "Left " << enemy[i].x << "," << enemy[i].y << endl;
+					if (LeftDoor - enemy[i].Dmg >= 0) {
+						LeftDoor -= enemy[i].Dmg;
+
+						enemy[i].x -= 8;
+
+					}
+					else {
+						enemy[i].EnemyUpdate(player.x, player.y);
+					}
+				}
+				else {
+					enemy[i].EnemyUpdate(player.x, player.y);
+				}
+			}
+			else if (enemy[i].x > 580 && enemy[i].x < 610) {
+				if (enemy[i].y < 600 && enemy[i].y > 200) {
+					cout << "Right " << enemy[i].x << "," << enemy[i].y << endl;
+					if (RightDoor - enemy[i].Dmg >= 0) {
+						RightDoor -= enemy[i].Dmg;
+
+						enemy[i].x += 8;
+
+					}
+					else {
+						enemy[i].EnemyUpdate(player.x, player.y);
+					}
+				}
+				else {
+					enemy[i].EnemyUpdate(player.x, player.y);
 				}
 			}
 			else {
-				//IF NOT ENTERING HOUSE THEN FOLLOW AND ATTACK PLAYER
 				enemy[i].EnemyUpdate(player.x, player.y);
 			}
+			
+				
+		
+			
+			
+			
+			
 			//DETECT IF ENEMY NEARBY PLAYER AND GIVE DAMAGE TO HIM
 			if (abs(enemy[i].x - player.x ) <42&& abs(enemy[i].y - player.y) <42){
 				if (enemy[i].atkSpeed <= 0) {
@@ -535,6 +584,7 @@ void update(int value) {
 		break;
 	case 1:
 		inGame();
+		inGameUI.MID_UI_UPDATE(TopDoor,BottomDoor,LeftDoor,RightDoor);
 		break;
 	}
     glutTimerFunc(25, update, ++timerCount);

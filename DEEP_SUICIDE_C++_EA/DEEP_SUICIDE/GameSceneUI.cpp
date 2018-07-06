@@ -99,6 +99,104 @@ void GameSceneUI::TOP_UI_DRAW() {
 
 void GameSceneUI::MID_SCENE_UI_DRAW() {
 
+	//TOP DOOR
+
+	//TOP DOOR HP BAR BACKGROUND
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex3f(300, 670, 0.3);
+	glVertex3f(300, 650, 0.3);
+	glVertex3f(500, 650, 0.3);
+	glVertex3f(500, 670, 0.3);
+	glEnd();
+	//TOP DOOR CURRENT HP BAR 
+	glBegin(GL_POLYGON);
+	glColor3f(0, 1, 0);
+	glVertex3f(300, 670, 0.4);
+	glVertex3f(300, 650, 0.4);
+	glVertex3f(300+ Draw_iTopDoorHP, 650, 0.4);
+	glVertex3f(300+ Draw_iTopDoorHP, 670, 0.4);
+	glEnd();
+
+	glColor3f(1, 1, 1);
+	glRasterPos3f(375, 680, 0.9);
+	string topDoor = to_string(Draw_iTopDoorHP);
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)topDoor.c_str());
+
+
+
+	//BOTTOM DOOR
+
+	//BOTTOM DOOR HP BAR BACKGROUND
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex3f(300, 245, 0.3);
+	glVertex3f(300, 225, 0.3);
+	glVertex3f(500, 225, 0.3);
+	glVertex3f(500, 245, 0.3);
+	glEnd();
+	//BOTTOM DOOR CURRENT HP BAR 
+	glBegin(GL_POLYGON);
+	glColor3f(0, 1, 0);
+	glVertex3f(300, 245, 0.4);
+	glVertex3f(300, 225, 0.4);
+	glVertex3f(300 + Draw_iBottomDoorHP, 225, 0.4);
+	glVertex3f(300 + Draw_iBottomDoorHP, 245, 0.4);
+	glEnd();
+
+	glColor3f(1, 1, 1);
+	glRasterPos3f(375, 200, 0.9);
+	string bottomDoor = to_string(Draw_iBottomDoorHP);
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)bottomDoor.c_str());
+
+	//LEFT DOOR
+
+	//LEFT DOOR HP BAR BACKGROUND
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex3f(170, 550, 0.3);
+	glVertex3f(170, 350, 0.3);
+	glVertex3f(190, 350, 0.3);
+	glVertex3f(190, 550, 0.3);
+	glEnd();
+	//LEFT DOOR CURRENT HP BAR 
+
+	glBegin(GL_POLYGON);
+	glColor3f(0, 1, 0);
+	glVertex3f(170, 550, 0.4);
+	glVertex3f(170, 550- Draw_iLeftDoorHP, 0.4);
+	glVertex3f(190, 550- Draw_iLeftDoorHP, 0.4);
+	glVertex3f(190, 550, 0.4);
+	glEnd();
+
+	glColor3f(1, 1, 1);
+	glRasterPos3f(135, 450, 0.9);
+	string leftDoor = to_string(Draw_iLeftDoorHP);
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)leftDoor.c_str());
+
+	//RIGHT DOOR
+
+	//RIGHT DOOR HP BAR BACKGROUND
+	glBegin(GL_POLYGON);
+	glColor3f(1, 0, 0);
+	glVertex3f(600, 550, 0.3);
+	glVertex3f(600, 350, 0.3);
+	glVertex3f(620, 350, 0.3);
+	glVertex3f(620, 550, 0.3);
+	glEnd();
+	//RIGHT DOOR CURRENT HP BAR 
+
+	glBegin(GL_POLYGON);
+	glColor3f(0, 1, 0);
+	glVertex3f(600, 550, 0.4);
+	glVertex3f(600, 550 - Draw_iRightDoorHP, 0.4);
+	glVertex3f(620, 550 - Draw_iRightDoorHP, 0.4);
+	glVertex3f(620, 550, 0.4);
+	glEnd();
+	glColor3f(1, 1, 1);
+	glRasterPos3f(625, 450, 0.9);
+	string rightDoor = to_string(Draw_iRightDoorHP);
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)rightDoor.c_str());
 }
 
 
@@ -112,5 +210,13 @@ void GameSceneUI::TOP_UI_UPDATE(float HP, int Waves,int Ammo, int MaxAmmo, int R
 	Draw_iAmmo = Ammo;
 	Draw_iMaxAmmo = MaxAmmo;
 	Draw_iReloading = Reloading;
+}
+
+void GameSceneUI::MID_UI_UPDATE(int topDoorHP, int bottomDoorHP, int leftDoorHP, int rightDoorHP) {
+
+	Draw_iTopDoorHP = topDoorHP;
+	Draw_iBottomDoorHP = bottomDoorHP;
+	Draw_iLeftDoorHP = leftDoorHP;
+	Draw_iRightDoorHP = rightDoorHP;
 }
 
