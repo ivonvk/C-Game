@@ -96,6 +96,15 @@ void GameSceneUI::TOP_UI_DRAW() {
 	
 
 }
+
+void GameSceneUI::MID_SCENE_UI_DRAW() {
+
+}
+
+
+
+
+
 void GameSceneUI::TOP_UI_UPDATE(float HP, int Waves,int Ammo, int MaxAmmo, int Reloading) {
 	//UPDATING DRAW NEEDED VALUES
 	Draw_iPlayerHP -= HP;

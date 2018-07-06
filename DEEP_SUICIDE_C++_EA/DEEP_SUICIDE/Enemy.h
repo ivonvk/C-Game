@@ -8,7 +8,7 @@ public:
 public:
 	float color = (rand() % 255 + 1)*0.01;
 	bool isActive = false;
-	int HP = 10;
+	int HP = 5;
 	int x, y;
 	float x_Speed = 0;
 	float y_Speed = 0;

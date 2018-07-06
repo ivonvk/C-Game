@@ -16,10 +16,10 @@ void Enemy::EnemyDraw() {
 
 	glBegin(GL_POLYGON);
 	glColor3f(color, 0, 0);
-	glVertex3f(0, 0, 0);
-	glVertex3f(0, 35, 0);
-	glVertex3f(35, 35, 0);
-	glVertex3f(35, 0, 0);
+	glVertex3f(0, 0, 0.2);
+	glVertex3f(0, 35, 0.2);
+	glVertex3f(35, 35, 0.2);
+	glVertex3f(35, 0, 0.2);
 	glEnd();
 }
 void Enemy::EnemyReset() {

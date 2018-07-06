@@ -189,10 +189,10 @@ void display() {
 	glTranslatef(220,305,0);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 0, 0);
-	glVertex2f(0, 0);
-	glVertex2f(0, 282);
-	glVertex2f(35, 282);
-	glVertex2f(35, 0);
+	glVertex3f(0, 0, 0.1);
+	glVertex3f(0, 282, 0.1);
+	glVertex3f(35, 282, 0.1);
+	glVertex3f(35, 0, 0.1);
 	glEnd();
 	glPopMatrix();
 
@@ -201,10 +201,10 @@ void display() {
 	glTranslatef(535, 305, 0);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 0, 0);
-	glVertex2f(0, 0);
-	glVertex2f(0, 282);
-	glVertex2f(35, 282);
-	glVertex2f(35, 0);
+	glVertex3f(0, 0, 0.1);
+	glVertex3f(0, 282, 0.1);
+	glVertex3f(35, 282, 0.1);
+	glVertex3f(35, 0, 0.1);
 	glEnd();
 	glPopMatrix();
 
@@ -213,10 +213,10 @@ void display() {
 	glTranslatef(220, 270, 0);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 0, 0);
-	glVertex2f(0, 0);
-	glVertex2f(0, 35);
-	glVertex2f(350, 35);
-	glVertex2f(350, 0);
+	glVertex3f(0, 0, 0.1);
+	glVertex3f(0, 35, 0.1);
+	glVertex3f(350, 35, 0.1);
+	glVertex3f(350, 0, 0.1);
 	glEnd();
 	glPopMatrix();
 
@@ -225,10 +225,10 @@ void display() {
 	glTranslatef(220, 585, 0);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 0, 0);
-	glVertex2f(0, 0);
-	glVertex2f(0, 35);
-	glVertex2f(350, 35);
-	glVertex2f(350, 0);
+	glVertex3f(0, 0, 0.1);
+	glVertex3f(0, 35, 0.1);
+	glVertex3f(350, 35, 0.1);
+	glVertex3f(350, 0,0.1);
 	glEnd();
 	glPopMatrix();
 	//IF PLAYER ENTER THE FIRST SCENE OF GAME SHOULD BE START SCENE MENU AND DRAWING UI
@@ -335,23 +335,22 @@ void inGame() {
 	for (int i = 0;i < 150;i++) {
 		if (enemy[i].isActive) {
 			//TOP AND RIGHT BOX BLOCKING ENEMY
-			if (800 - enemy[i].x>300&&
+			if (800 - enemy[i].x>250&&
 				800 - enemy[i].x<550 &&
-				800 - enemy[i].y>250&&
-				800 - enemy[i].y<500
+				800 - enemy[i].y>200&&
+				800 - enemy[i].y<550
 				) {
 				//KNOCKBACK ENEMY
-				if (800 - enemy[i].y < 250) {
-					enemy[i].EnemyUpdate(rand() % 800 + 280, -rand() % 800 + 280);
-					cout << "RB -1" << endl;
-				}else if(800 - enemy[i].y > 450) {
-
-					//enemy[i].EnemyUpdate(rand() % 800 + 280, rand() % 800 + 280);
-					enemy[i].y -= rand() % 20 + 1;
-					cout << "RB -2" << endl;
+				if (800 - enemy[i].y < 200) {
+					enemy[i].x += 1;
+					enemy[i].y -= 1;
+		
+				}else if(800 - enemy[i].y > 500) {
+					enemy[i].y -= 1;
 				}
-				else {
-					enemy[i].EnemyUpdate(rand() % 800 + 280, rand() % 800 + 280);
+				else  {
+					enemy[i].x += 1;
+					enemy[i].y += 1;
 				}
 				
 			}
@@ -359,21 +358,18 @@ void inGame() {
 			else if (
 				800 - enemy[i].x>400 &&
 				800 - enemy[i].x<600 &&
-				800 - enemy[i].y>250 &&
-				800 - enemy[i].y<500
-				
+				800 - enemy[i].y>200 &&
+				800 - enemy[i].y<550
 				) {
 				//KNOCKBACK ENEMY
-				if (800 - enemy[i].y > 250) {
-					enemy[i].EnemyUpdate(-rand() % 800 + 280, -rand() % 800 + 280);
-					cout << "LB -1" << endl;
+				if (800 - enemy[i].y > 200) {
+					enemy[i].x-= 1;
+					enemy[i].y -= 1;
 				}
 				else {
-					enemy[i].EnemyUpdate(-rand() % 800 + 280, -rand() % 800 + 280);
-					cout << "LB -2" << endl;
+					enemy[i].x -= 1;
+					enemy[i].y -= 1;
 				}
-				
-				
 			}
 			else {
 				//IF NOT ENTERING HOUSE THEN FOLLOW AND ATTACK PLAYER

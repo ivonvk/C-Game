@@ -8,6 +8,7 @@ public:
 	~GameSceneUI();
 public: 
 	void TOP_UI_DRAW();
+	void MID_SCENE_UI_DRAW();
 	void TOP_UI_UPDATE(float HP, int Waves,int Ammo,int MaxAmmo,int Reloading);
 
 	int Draw_iPlayerHP = 100;

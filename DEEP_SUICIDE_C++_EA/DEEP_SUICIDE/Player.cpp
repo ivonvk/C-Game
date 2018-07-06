@@ -22,10 +22,10 @@ void Player::PlayerDraw() {
 
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
-	glVertex3f(0, 0, 0);
-	glVertex3f(0,35, 0);
-	glVertex3f(35, 35, 0);
-	glVertex3f(35, 0 , 0);
+	glVertex3f(0, 0, 0.5);
+	glVertex3f(0,35, 0.5);
+	glVertex3f(35, 35, 0.5);
+	glVertex3f(35, 0 , 0.5);
 	glEnd();
 }
 
