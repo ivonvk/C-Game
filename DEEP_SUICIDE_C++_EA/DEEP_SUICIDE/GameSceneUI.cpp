@@ -114,8 +114,8 @@ void GameSceneUI::MID_SCENE_UI_DRAW() {
 	glColor3f(0, 1, 0);
 	glVertex3f(300, 670, 0.4);
 	glVertex3f(300, 650, 0.4);
-	glVertex3f(300+ Draw_iTopDoorHP, 650, 0.4);
-	glVertex3f(300+ Draw_iTopDoorHP, 670, 0.4);
+	glVertex3f(300+ Draw_iTopDoorHP*0.04, 650, 0.4);
+	glVertex3f(300+ Draw_iTopDoorHP*0.04, 670, 0.4);
 	glEnd();
 
 	glColor3f(1, 1, 1);
@@ -140,8 +140,8 @@ void GameSceneUI::MID_SCENE_UI_DRAW() {
 	glColor3f(0, 1, 0);
 	glVertex3f(300, 245, 0.4);
 	glVertex3f(300, 225, 0.4);
-	glVertex3f(300 + Draw_iBottomDoorHP, 225, 0.4);
-	glVertex3f(300 + Draw_iBottomDoorHP, 245, 0.4);
+	glVertex3f(300 + Draw_iBottomDoorHP*0.04, 225, 0.4);
+	glVertex3f(300 + Draw_iBottomDoorHP*0.04, 245, 0.4);
 	glEnd();
 
 	glColor3f(1, 1, 1);
@@ -164,8 +164,8 @@ void GameSceneUI::MID_SCENE_UI_DRAW() {
 	glBegin(GL_POLYGON);
 	glColor3f(0, 1, 0);
 	glVertex3f(170, 550, 0.4);
-	glVertex3f(170, 550- Draw_iLeftDoorHP, 0.4);
-	glVertex3f(190, 550- Draw_iLeftDoorHP, 0.4);
+	glVertex3f(170, 550- Draw_iLeftDoorHP*0.04, 0.4);
+	glVertex3f(190, 550- Draw_iLeftDoorHP*0.04, 0.4);
 	glVertex3f(190, 550, 0.4);
 	glEnd();
 
@@ -189,8 +189,8 @@ void GameSceneUI::MID_SCENE_UI_DRAW() {
 	glBegin(GL_POLYGON);
 	glColor3f(0, 1, 0);
 	glVertex3f(600, 550, 0.4);
-	glVertex3f(600, 550 - Draw_iRightDoorHP, 0.4);
-	glVertex3f(620, 550 - Draw_iRightDoorHP, 0.4);
+	glVertex3f(600, 550 - Draw_iRightDoorHP*0.04, 0.4);
+	glVertex3f(620, 550 - Draw_iRightDoorHP*0.04, 0.4);
 	glVertex3f(620, 550, 0.4);
 	glEnd();
 	glColor3f(1, 1, 1);

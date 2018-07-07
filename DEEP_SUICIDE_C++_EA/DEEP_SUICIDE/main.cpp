@@ -26,13 +26,13 @@
 using namespace std;
 int Scene = 0;
 
-int TopDoor = 200;
-int BottomDoor = 200;
-int LeftDoor = 200;
-int RightDoor = 200;
+int TopDoor = 5000;
+int BottomDoor = 5000;
+int LeftDoor = 5000;
+int RightDoor = 5000;
 
-int TotalBullet = 150;
-int TotalEnemy = 150;
+int TotalBullet = 200;
+int TotalEnemy;
 int timerCount = 0;
 float cam_x = 0;
 float cam_y = 0;
@@ -49,31 +49,39 @@ int enemyNum = 0;
 int Wave = 1;
 int mouse_x, mouse_y;
 float fireTimer;
+bool isPreparing;
 Player player;
-PlayerBullet PB[150];
+PlayerBullet *PB;
 MenuButton MB;
 GameSceneUI inGameUI;
-Enemy enemy[150];
+Enemy *enemy ;
 Item_Pickup objItem[15];
+float WaveStartCounter = 500;
 void initRendering() {
     glEnable(GL_DEPTH_TEST);                    // test 3D depth
 }
 
 void gameStart() {
+	PB = new PlayerBullet[200];
 	//PLAYER START LOCATION
-	player.x = 383;
-	player.y = 420;
+	if (Wave == 1) {
+		player.x = 383;
+		player.y = 420;
+	}
+	TotalEnemy = Wave * 10;
+	enemy = new Enemy[Wave * 10];
 	//ENEMY SPAWNING
 	if (enemyNum < Wave * 10) {
 		for (int i = 0;i < Wave * 10;i++) {
+			enemy[i] = *new Enemy;
 			if (!enemy[i].isActive) {
 				enemy[i].isActive = true;
 				//ENEMY LOCATION RANDOMLY
-				enemy[i].x = -rand() % 800 + 280;
-				enemy[i].y = -rand() %800 + 280;
+				enemy[i].x = -rand() % 1000 + 280;
+				enemy[i].y = -rand() %1000 + 280;
 			}
 		}
-		for (int i = 0;i < 15;i++) {
+		for (int i = 0;i < Wave * 10;i++) {
 			objItem[i].isActive = true;
 			//ITEM SPWANING LOCATION AND TYPE RANDOMLY
 			int RandItem = rand() % 100 + 1;
@@ -95,7 +103,16 @@ void gameStart() {
 		}
 	}
 }
+void gameWaveChecking() {
 
+		
+	
+			Wave += 1;
+			gameStart();
+			
+		
+	
+}
 void cameraSetup(int w, int h) {
     glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     glMatrixMode(GL_PROJECTION);                // select projection matrix
@@ -239,7 +256,7 @@ void display() {
 	//IF PLAYER ENTER THE FIRST SCENE OF GAME SHOULD BE START SCENE MENU AND DRAWING UI
 	if (Scene == 0) {
 		StartSceneMenu();
-		inGameUI.MID_SCENE_UI_DRAW();
+		
 	}
 	//IF PLAYER START THE GAME THEN DRAWING UI PLAYER ENEMY AND OBJECT
 	if(Scene!=0) {
@@ -251,7 +268,7 @@ void display() {
 		player.PlayerDraw();
 		glPopMatrix();
 
-		for (int i = 0;i < 15;i++) {
+		for (int i = 0;i < Wave * 10;i++) {
 			if (objItem[i].isActive) {
 				//GIVE A LOCAL TRANSLATE TO EVERY ITEM AND SET LOCATION OF THEM
 				glPushMatrix();
@@ -266,7 +283,7 @@ void display() {
 				PB[i].BulletDraw();
 			}
 		}
-		for (int i = 0;i < TotalEnemy;i++) {
+		for (int i = 0;i < Wave*10;i++) {
 			if (enemy[i].isActive) {
 				//DRAWING ENEMY MOVING
 				glPushMatrix();
@@ -313,7 +330,7 @@ void inTitle() {
 void inGame() {
 	
 	//CHECK EVERY ITEM AND GET IF PLAYER NEARBY THEM
-	for (int i = 0;i < 15;i++) {
+	for (int i = 0;i < Wave * 10;i++) {
 		if (objItem[i].isActive) {
 			if (abs(objItem[i].x - player.x) < 42 && abs(objItem[i].y - player.y) < 42) {
 				switch (objItem[i].iType) {
@@ -340,7 +357,7 @@ void inGame() {
 		}
 	}
 	//DETECT ENEMY AND BLOCK IF THEY TRY TO ENTER THE HOUSE
-	for (int i = 0;i < 150;i++) {
+	for (int i = 0;i < Wave * 10;i++) {
 		if (enemy[i].isActive) {
 
 			//TOP AND RIGHT BOX BLOCKING ENEMY
@@ -447,7 +464,7 @@ void inGame() {
 		}
 		if (PB[i].isActive) {
 			
-			for (int j = 0;j < TotalEnemy;j++) {
+			for (int j = 0;j < TotalBullet;j++) {
 				if (enemy[j].isActive && !PB[i ].isFired) {
 					//IF BULLET SHOOTED AND NEARBY ENEMY THEN DO FUNCTION
 					if (abs(enemy[j].x - PB[i].x) < 35 && abs(enemy[j].y - PB[i].y) < 35) {
@@ -459,6 +476,7 @@ void inGame() {
 							PB[i].isFired = true;
 							PB[i].isActive = false;
 							
+							
 						}
 						//ENEMY DEAD IF DAMAGE LAGRE THEN ENEMY HP
 						else {
@@ -467,7 +485,12 @@ void inGame() {
 								enemy[j ].EnemyReset();
 								PB[i].isFired = true;
 								PB[i].isActive = false;
-								
+								TotalEnemy -= 1;
+								if (TotalEnemy <= 0) {
+									TotalEnemy = 0;
+									delete [] enemy;
+									WaveStartCounter = 500;
+								}
 						}
 						
 					}
@@ -496,7 +519,9 @@ void inGame() {
 				fireTimer = 6;
 
 				//DECIDE BULLET DIRCTION AND RANDOM FIRE LINE
+				
 				for (int i = 0;i < TotalBullet;i++) {
+
 					if (!PB[i].isActive) {
 						cout << PB[i].isFired << endl;
 						PB[i].isActive = true;
@@ -572,10 +597,11 @@ void inGame() {
 }
 
 void update(int value) {
+	
 	glutPostRedisplay();
 	player.PlayerMoving();
 	inGameUI.TOP_UI_UPDATE(0, Wave, player.Ammo,player.MaxAmmo, player.Reloading);
-
+	
 	//DETECT SCENE AND DO FUNCTION
 	switch (Scene) {
 	case 0:
@@ -583,10 +609,30 @@ void update(int value) {
 		inTitle();
 		break;
 	case 1:
-		inGame();
-		inGameUI.MID_UI_UPDATE(TopDoor,BottomDoor,LeftDoor,RightDoor);
+		if (WaveStartCounter > 50) {
+			WaveStartCounter -= 25;
+		}
+		else if (WaveStartCounter > 25)
+		{
+			WaveStartCounter -= 5;
+				
+			
+		}
+		else {
+			if (TotalEnemy <= 0) {
+				gameWaveChecking();
+				
+				WaveStartCounter = 0;
+			}
+			if (TotalEnemy > 0) {
+				inGame();
+				inGameUI.MID_UI_UPDATE(TopDoor, BottomDoor, LeftDoor, RightDoor);
+			}
+		}
+		
 		break;
 	}
+	
     glutTimerFunc(25, update, ++timerCount);
 	
 }

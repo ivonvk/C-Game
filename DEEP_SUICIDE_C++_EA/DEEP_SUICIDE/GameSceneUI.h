@@ -18,9 +18,9 @@ public:
 	int Draw_iMaxAmmo = 10;
 	int Draw_iReloading = 50;
 
-	int Draw_iTopDoorHP = 200;
-	int Draw_iBottomDoorHP = 200;
-	int Draw_iLeftDoorHP = 200;
-	int Draw_iRightDoorHP = 200;
+	int Draw_iTopDoorHP = 5000;
+	int Draw_iBottomDoorHP = 5000;
+	int Draw_iLeftDoorHP = 5000;
+	int Draw_iRightDoorHP = 5000;
 };
 

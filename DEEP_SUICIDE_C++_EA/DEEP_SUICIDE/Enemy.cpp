@@ -36,25 +36,25 @@ void Enemy::EnemyUpdate(int player_x, int player_y) {
 		int bouncing = 0;
 	//ENEMY BOUNCING AND MORE NEARBY THE PLAYER
 	if (player_x > 0) {
-		xmore = -30;
+		xmore = -60;
 		bouncing = -rand() % 3 + 1;
 	}
 	else {
-		xmore = 30;
+		xmore = 60;
 		bouncing = rand() % 3 + 1;
 	}
 	if (player_y > 0) {
-		ymore = -30;
+		ymore = -60;
 		bouncing = -rand() % 3 + 1;
 	}
 	else {
-		ymore = 30;
+		ymore = 60;
 		bouncing = rand() % 3 + 1;
 	}
 	//ENEMY BOUNCING AND MOVING
-		x += (x - player_x+xmore)*3*-0.005 + bouncing;
+		x += (x - player_x+xmore)*5*-0.005 + bouncing;
 
-		y += (y - player_y+ ymore)*3*-0.005 + bouncing;
+		y += (y - player_y+ ymore)*5*-0.005 + bouncing;
 	//ENEMY ATTACK SPEED
 	if (atkSpeed > 0) {
 		atkSpeed -= 1;
