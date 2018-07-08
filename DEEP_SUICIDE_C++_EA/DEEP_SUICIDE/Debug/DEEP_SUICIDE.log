@@ -1,0 +1,11 @@
+﻿  Fence.cpp
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(35): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(36): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(38): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(48): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(49): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(50): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\last_day _ea\deep_suicide_c++_ea\deep_suicide\fence.cpp(51): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\LAST_DAY _EA\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
+  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\LAST_DAY _EA\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)
