@@ -9,7 +9,7 @@ public:
 public:
 	float color = (rand() % 255 + 1)*0.01;
 	bool isActive = false;
-	int HP = 5;
+	int HP = 1;
 	int x, y;
 	float x_Speed = 0;
 	float y_Speed = 0;
@@ -24,6 +24,14 @@ public :
 	void EnemyUpdate(int player_x, int player_y);
 	void EnemyDraw();
 	void EnemyReset();
+	int iEnemyType = 0;
+	int xmore = 5;
+	int ymore = 5;
+	int bouncing = 0;
+	int Randspeed = rand() % 3 + 2;
+	int speed = 1;
+	float soundCounter;
+	void playSound();
 	void EnemyCounter();
 	void EnemyInit();
 };

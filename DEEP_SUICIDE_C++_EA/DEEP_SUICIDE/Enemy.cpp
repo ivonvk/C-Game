@@ -1,12 +1,14 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "PlayerBullet.h"
-#include "CustomImage.h"
+#include "GL/freeglut.h"
+#include <windows.h>
+#include <mmsystem.h>
+#include <iostream>
 #include <string>
-
+#include "CustomImage.h"
 using namespace std;
-
-
+float soundCounter = soundCounter;
 Enemy::Enemy()
 {
 }
@@ -52,32 +54,45 @@ void Enemy::EnemyReset() {
 	y_Speed = 0;//ENEMY Y MOVING
 }
 void Enemy::EnemyUpdate(int player_x, int player_y) {
-
-	int xmore = 0;
-	int ymore = 0;
-
-	int bouncing = 0;
+	
+	int xmore = 2;
+		int ymore = 2;
+	
+		int bouncing = 0;
 	//ENEMY BOUNCING AND MORE NEARBY THE PLAYER
 	if (player_x > 0) {
-		xmore = -30;
+		
 		bouncing = -rand() % 3 + 1;
 	}
 	else {
-		xmore = 30;
+		
 		bouncing = rand() % 3 + 1;
 	}
 	if (player_y > 0) {
-		ymore = -30;
+		
 		bouncing = -rand() % 3 + 1;
 	}
 	else {
-		ymore = 30;
+		
 		bouncing = rand() % 3 + 1;
 	}
 	//ENEMY BOUNCING AND MOVING
-	x += (x - player_x + xmore) * 3 * -0.005 + bouncing;
+		x += (x - player_x)*speed*-0.001 + bouncing;
 
-	y += (y - player_y + ymore) * 3 * -0.005 + bouncing;
+		y += (y - player_y)*speed*-0.001 + bouncing;
+		if (x - player_x < 3) {
+			x += xmore;
+		}
+		else {
+			x -= xmore;
+		}
+		
+		if(y - player_y < 3) {
+			y += ymore;
+		}
+		else {
+			y -= ymore;
+		}
 	//ENEMY ATTACK SPEED
 	if (atkSpeed > 0) {
 		atkSpeed -= 1;

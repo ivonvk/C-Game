@@ -2,6 +2,7 @@
 #include "GL/freeglut.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <mmsystem.h>
 #include <iostream>
 PlayerBullet::PlayerBullet()
 {
@@ -14,6 +15,7 @@ PlayerBullet::~PlayerBullet()
 }
 void PlayerBullet::BulletUpdate()
 {
+	
 	//BULLET LOCATION MOVING
 	x += x_Speed;
 	y += y_Speed;

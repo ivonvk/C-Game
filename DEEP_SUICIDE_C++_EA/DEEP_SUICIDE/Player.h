@@ -13,7 +13,7 @@ public:
 	float y ;//PLAYER Y LOCATION
 	int facing ;//PLAYER FACING DIRCTION
 	int HP = 100;//PLAYER CURRENT HP
-	int Ammo = 10;//PLAYER CURRENT AMMO
+	int Ammo = 20;//PLAYER CURRENT AMMO
 	int MaxAmmo = 100;//PLAYER TOTAL AMMO COULD BE USED
 	float Reloading = 0;//PLAYER RELOAD AMMO TIMER
 

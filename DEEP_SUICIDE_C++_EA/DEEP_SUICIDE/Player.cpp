@@ -29,7 +29,6 @@ void Player::PlayerUpdata() {
 	}
 }
 
-
 void Player::PlayerInit() {
 	glEnable(GL_TEXTURE_2D);
 
@@ -73,7 +72,7 @@ void Player::PlayerDraw() {
 		glTexCoord2f(1, 0);
 		glVertex3f(313.0f, 0.0f, 0);
 	}
-	else if(isLeft) {
+	else if (isLeft) {
 		glBegin(GL_POLYGON);
 		glTexCoord2f(1, 0);
 		glVertex3f(0.0f, 0.0f, 0.0);

@@ -8,6 +8,7 @@ public:
 	Item_Pickup();
 	~Item_Pickup();
 public:
+	void ItemDraw();//ITEM DRAWING
 	int x;//ITEM X LOCATION
 	int y;//ITEM Y LOCATION
 	int iType;//ITEM TYPE
@@ -17,9 +18,9 @@ public:
 	GLuint TexID[3];
 	float counter = 100;
 	int numImg = 0;
-
-public:
-	void ItemDraw();//ITEM DRAWING
 	void ItemInit();
+
+	
+	
 };
 
