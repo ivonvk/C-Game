@@ -1,14 +1,19 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "PlayerBullet.h"
-#include "GL/freeglut.h"
 #include <windows.h>
 #include <mmsystem.h>
 #include <iostream>
-#include <string>
+
 #include "CustomImage.h"
+#include <string>
+
+
 using namespace std;
+
+
 float soundCounter = soundCounter;
+
 Enemy::Enemy()
 {
 }
@@ -25,14 +30,13 @@ void Enemy::EnemyInit() {
 		numImg = i;
 		string str = "images/SM_" + to_string(i) + ".bmp";
 		CustomImage tex(str.c_str());
-		//PngImage tex(str.c_str());
 		TexID[numImg] = tex.GenTexture();
 	}
 }
 
 void Enemy::EnemyDraw() {
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, TexID[numImg]);
+	//glBindTexture(GL_TEXTURE_2D, TexID[numImg]);
 
 	glPushMatrix();
 	glBegin(GL_POLYGON);
@@ -46,6 +50,7 @@ void Enemy::EnemyDraw() {
 	glEnd();
 	glPopMatrix();
 }
+
 void Enemy::EnemyReset() {
 	isActive = false;
 	x = 0;//ENEMY X LOACTION

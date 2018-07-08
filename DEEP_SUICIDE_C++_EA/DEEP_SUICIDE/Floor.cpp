@@ -17,16 +17,15 @@ Floor::~Floor()
 void Floor::FloorInit() {
 	glEnable(GL_TEXTURE_2D);
 
-	numImg = 1;
-	string str = "images/MAPP_1.bmp";
-	CustomImage tex(str.c_str());
+	string FloorStr = "images/MAPP_1.bmp";
+	CustomImage FloorTex(FloorStr.c_str());
 	//PngImage tex(str.c_str());
-	TexID[numImg] = tex.GenTexture();
+	TexID[1] = FloorTex.GenTexture();
 }
 
 void Floor::DrawFloorX() {
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, TexID[numImg]);
+	glBindTexture(GL_TEXTURE_2D, TexID[1]);
 	glTranslatef(0, 0, -0.1);
 
 	for (int x = 0; x < 800; x += 50) {
@@ -40,14 +39,5 @@ void Floor::DrawFloorX() {
 		glTexCoord2f(1, 0); glVertex3f(50, 0, 0.);
 		glEnd();
 		glPopMatrix();
-	}
-}
-
-void Floor::FloorUpdata() {
-	counter -= 25;
-	if (counter < 0) {
-		numImg++;
-		numImg = numImg % 8;
-		counter = 100;
 	}
 }

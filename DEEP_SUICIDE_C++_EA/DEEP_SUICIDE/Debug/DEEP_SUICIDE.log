@@ -1,2 +1,53 @@
-﻿  DEEP_SUICIDE.vcxproj -> C:\Users\USER\Desktop\ea_worka\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
-  DEEP_SUICIDE.vcxproj -> C:\Users\USER\Desktop\ea_worka\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)
+﻿  main.cpp
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.h(10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(227): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(228): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(229): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(230): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(231): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(238): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(239): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(240): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(241): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(242): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(250): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(255): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(256): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(257): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(258): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(266): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(267): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(268): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(269): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(368): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(368): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(393): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(408): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(502): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(506): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(519): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(523): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(536): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(540): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(553): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(557): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(561): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(575): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(575): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(594): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(610): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(585): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(586): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\main.cpp(781): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Enemy.cpp
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.h(10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(44): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(46): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(47): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(48): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(49): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(85): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+c:\users\ccm\desktop\llast_ea_file\deep_suicide_c++_ea\deep_suicide\enemy.cpp(87): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\LLAST_EA_FILE\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
+  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\LLAST_EA_FILE\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)

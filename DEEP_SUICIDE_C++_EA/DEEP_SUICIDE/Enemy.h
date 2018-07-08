@@ -1,5 +1,5 @@
-#pragma once
 #include "GL/freeglut.h"
+#pragma once
 
 class Enemy
 {
@@ -20,16 +20,17 @@ public:
 	float counter = 100;
 	int numImg = 0;
 
-public :
-	void EnemyUpdate(int player_x, int player_y);
-	void EnemyDraw();
-	void EnemyReset();
 	int iEnemyType = 0;
 	int xmore = 5;
 	int ymore = 5;
 	int bouncing = 0;
 	int Randspeed = rand() % 3 + 2;
 	int speed = 1;
+
+public :
+	void EnemyUpdate(int player_x, int player_y);
+	void EnemyDraw();
+	void EnemyReset();
 	float soundCounter;
 	void playSound();
 	void EnemyCounter();

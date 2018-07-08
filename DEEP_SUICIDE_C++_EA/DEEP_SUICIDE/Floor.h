@@ -16,6 +16,5 @@ public:
 public:
 	void DrawFloorX();
 	void FloorInit();
-	void FloorUpdata();
 };
 

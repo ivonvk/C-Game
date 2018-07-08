@@ -19,8 +19,5 @@ public:
 	float counter = 100;
 	int numImg = 0;
 	void ItemInit();
-
-	
-	
 };
 

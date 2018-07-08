@@ -77,7 +77,7 @@ PlayerBullet *PB;
 MenuButton MB;
 GameSceneUI inGameUI;
 Enemy *enemy ;
-Item_Pickup objItem[15];
+Item_Pickup objItem[100];
 Fence fencei;
 Floor floors;
 
@@ -147,6 +147,13 @@ DWORD WINAPI MyThread2(PVOID pvParam)
 
 void initRendering() {
     glEnable(GL_DEPTH_TEST);                    // test 3D depth
+	floors.FloorInit();
+	player.PlayerInit();
+	fencei.FenceInit();
+
+	for (int i = 0; i < 150; i++) {
+	objItem[i].ItemInit();
+	}
 }
 
 void gameStart() {
@@ -755,10 +762,6 @@ void inGame() {
 }
 
 void update(int value) {
-
-	
-
-	
 	if (musicPlayer <= 0) {
 		HANDLE hThread2 = CreateThread(NULL, 0, MyThread2, NULL, 0, NULL);
 		musicPlayer = 2000;
@@ -766,17 +769,13 @@ void update(int value) {
 		CloseHandle(hThread2);
 	}
 	else {
-	
 		musicPlayer -=1;
-		
 	}
+
+
 	glutPostRedisplay();
 	player.PlayerUpdata();
 	//floors.FloorUpdata();
-
-	for (int i = 0; i < 50; i++) {
-		enemy[i].EnemyCounter();
-	}
 
 	player.PlayerMoving();
 	inGameUI.TOP_UI_UPDATE(0, Wave, player.Ammo,player.MaxAmmo, player.Reloading);
