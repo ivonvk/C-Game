@@ -5,7 +5,7 @@ public:
 	PlayerBullet();
 	~PlayerBullet();
 public:
-	int Dmg = 100;
+	int Dmg = 1;
 	float life = 20;
 	float x, y;
 	float x_Speed =0;

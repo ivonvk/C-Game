@@ -11,7 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CustomImage.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameSceneUI.cpp" />
     <ClCompile Include="Item_Pickup.cpp" />
     <ClCompile Include="main.cpp" />
@@ -20,7 +22,9 @@
     <ClCompile Include="PlayerBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomImage.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Floor.h" />
     <ClInclude Include="GameSceneUI.h" />
     <ClInclude Include="Item_Pickup.h" />
     <ClInclude Include="MenuButton.h" />
@@ -61,10 +65,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\CCM\Desktop\ea_work\DEEP_SUICIDE_C++_EA\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>GL;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>GL;lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;freeglutd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
