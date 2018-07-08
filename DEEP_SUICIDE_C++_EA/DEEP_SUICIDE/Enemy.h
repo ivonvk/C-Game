@@ -16,7 +16,7 @@ public:
 	int Dmg = 2;
 	float atkSpeed = 5.0f;
 
-	GLuint TexID[17];
+	GLuint EneTexID[16];
 	float counter = 100;
 	int numImg = 0;
 
@@ -26,7 +26,7 @@ public:
 	int bouncing = 0;
 	int Randspeed = rand() % 3 + 2;
 	int speed = 1;
-
+	float bmpRunning = 10;
 public :
 	void EnemyUpdate(int player_x, int player_y);
 	void EnemyDraw();

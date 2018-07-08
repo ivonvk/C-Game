@@ -1,6 +1,5 @@
 #include "Enemy.h"
-#include "Player.h"
-#include "PlayerBullet.h"
+
 #include <windows.h>
 #include <mmsystem.h>
 #include <iostream>
@@ -24,19 +23,22 @@ Enemy::~Enemy()
 }
 
 void Enemy::EnemyInit() {
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
 
-	for (int i = 0; i < 17; i++) {
-		numImg = i;
-		string str = "images/SM_" + to_string(i) + ".bmp";
+	//for (int i = 0; i < 16; i++) {
+		
+		//numImg = i;
+		string str = "images/SM_" + to_string(numImg) + ".bmp";
 		CustomImage tex(str.c_str());
-		TexID[numImg] = tex.GenTexture();
-	}
+		EneTexID[numImg] = tex.GenTexture();
+		EnemyDraw();
+	//}
 }
 
 void Enemy::EnemyDraw() {
+
 	glEnable(GL_TEXTURE_2D);
-	//glBindTexture(GL_TEXTURE_2D, TexID[numImg]);
+	glBindTexture(GL_TEXTURE_2D, EneTexID[numImg]);
 
 	glPushMatrix();
 	glBegin(GL_POLYGON);

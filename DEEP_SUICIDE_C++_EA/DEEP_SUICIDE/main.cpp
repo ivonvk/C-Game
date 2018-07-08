@@ -398,16 +398,22 @@ void display() {
 		for (int i = 0;i < TotalBullet;i++) {
 			//DRAWING BULLET FLYING IF SHOOTED
 			if (PB[i].isActive) {
+				glPushMatrix();
 				PB[i].BulletDraw();
+				glPopMatrix();
 			}
 		}
-		for (int i = 0;i < Wave*4;i++) {
-			if (enemy[i].isActive) {
-				//DRAWING ENEMY MOVING
-				glPushMatrix();
-				glTranslatef(enemy[i].x, enemy[i].y, 0);
-				enemy[i].EnemyDraw();
-				glPopMatrix();
+		if (TotalEnemy > 0) {
+			for (int i = 0;i < Wave * 4;i++) {
+				if (enemy[i].isActive) {
+					//DRAWING ENEMY MOVING
+					glPushMatrix();
+					glTranslatef(enemy[i].x, enemy[i].y, 0);
+
+					enemy[i].EnemyDraw();
+
+					glPopMatrix();
+				}
 			}
 		}
 	}
@@ -485,6 +491,19 @@ void inGame() {
 	//DETECT ENEMY AND BLOCK IF THEY TRY TO ENTER THE HOUSE
 	for (int i = 0;i < Wave * 4;i++) {
 		if (enemy[i].isActive) {
+			if (enemy[i].bmpRunning > 0) {
+				enemy[i].bmpRunning -= 1;
+			}
+			else {
+				if (enemy[i].numImg + 1 <= 16) {
+					enemy[i].numImg += 1;
+				}
+				else {
+					enemy[i].numImg = 0;
+				}
+					enemy[i].bmpRunning = 100;
+			}
+			enemy[i].EnemyInit();
 			enemy[i].soundCounter -= 1;
 			//TOP AND RIGHT BOX BLOCKING ENEMY
 			
