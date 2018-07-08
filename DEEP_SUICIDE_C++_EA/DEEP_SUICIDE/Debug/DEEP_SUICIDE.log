@@ -1,5 +1,3 @@
-﻿  Floor.cpp
-c:\users\ccm\desktop\ea_work\deep_suicide_c++_ea\deep_suicide\floor.cpp(30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\ccm\desktop\ea_work\deep_suicide_c++_ea\deep_suicide\floor.cpp(34): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\ea_work\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
-  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\ea_work\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)
+﻿  Item_Pickup.cpp
+  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\LAST_DAY _EA\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.exe
+  DEEP_SUICIDE.vcxproj -> C:\Users\CCM\Desktop\LAST_DAY _EA\DEEP_SUICIDE_C++_EA\Debug\DEEP_SUICIDE.pdb (Full PDB)

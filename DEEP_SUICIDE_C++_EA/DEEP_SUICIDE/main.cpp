@@ -74,6 +74,10 @@ void initRendering() {
 	for (int i = 0; i < 50; i++) {
 		enemy[i].EnemyInit();
 	}
+
+	for (int i = 0; i < 15; i++) {
+		objItem[i].ItemInit();
+	}
 }
 
 void gameStart() {
