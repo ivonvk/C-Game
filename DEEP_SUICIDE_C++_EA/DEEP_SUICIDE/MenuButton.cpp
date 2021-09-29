@@ -78,13 +78,13 @@ void MenuButton::DifficultButton() {
 		glRasterPos3f(30, 170, 0.4);
 		string strDifficult = "";
 		switch (diffNum) {
-		case 0:
+		case 1:
 			strDifficult = "Difficult: Easy(3Waves)";
 			break;
-		case 1:
+		case 2:
 			strDifficult = "Difficult: Normal(6Waves)";
 			break;
-		case 2:
+		case 3:
 			strDifficult = "Difficult: Hard(10Waves)";
 			break;
 		}

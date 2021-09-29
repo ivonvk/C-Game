@@ -248,4 +248,52 @@ void GameSceneUI::MID_UI_UPDATE(int topDoorHP, int bottomDoorHP, int leftDoorHP,
 	Draw_iLeftDoorHP = leftDoorHP;
 	Draw_iRightDoorHP = rightDoorHP;
 }
+void GameSceneUI::ResultMenu_UI() {
+	glPushMatrix();
+	glBegin(GL_POLYGON);
+	glColor3f(1,1, 0);
+	glVertex3f(100, 700, 0.3);
+	glVertex3f(100, 100, 0.3);
+	glVertex3f(700, 100, 0.3);
+	glVertex3f(700, 700, 0.3);
+	glEnd();
+	glPopMatrix();
+	glPushMatrix();
+	glBegin(GL_POLYGON);
+	glColor3f(0, 0, 0);
+	glVertex3f(120, 680, 0.4);
+	glVertex3f(120, 120, 0.4);
+	glVertex3f(680, 120, 0.4);
+	glVertex3f(680, 680, 0.4);
+	glEnd();
+	glPopMatrix();
+	glColor3f(1, 1, 0);
+	glRasterPos3f(350, 500, 0.9);
+	string Result;
+	if (isWin) {
+		Result = "You Win!";
+	}
+	else {
+		Result = "You Lose!";
+	}
+	
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)Result.c_str());
+	glColor3f(1, 1, 1);
+	glRasterPos3f(280, 400, 0.9);
+	string PressF = "Press F the return to MENU";
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)PressF.c_str());
+}
 
+void GameSceneUI::UI_RESET()
+{
+	 Draw_iPlayerHP = 100;
+	 Draw_iWaves = 1;
+	 Draw_iAmmo = 10;
+	 Draw_iMaxAmmo = 10;
+	 Draw_iReloading = 50;
+
+	 Draw_iTopDoorHP = 5000;
+	 Draw_iBottomDoorHP = 5000;
+	 Draw_iLeftDoorHP = 5000;
+	 Draw_iRightDoorHP = 5000;
+}

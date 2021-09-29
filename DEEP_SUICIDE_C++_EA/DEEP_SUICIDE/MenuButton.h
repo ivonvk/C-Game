@@ -15,7 +15,7 @@ public:
 	bool quiCor = false;
 	bool isActive = true;
 	int btnNumMenu = 0;
-	int diffNum = 0;
+	int diffNum = 1;
 	float btnTimer = 0;
 	
 	void StartButton();

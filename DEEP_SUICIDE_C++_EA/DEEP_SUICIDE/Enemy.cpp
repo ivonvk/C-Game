@@ -28,17 +28,18 @@ void Enemy::EnemyInit() {
 	//for (int i = 0; i < 16; i++) {
 		
 		//numImg = i;
-		string str = "images/SM_" + to_string(numImg) + ".bmp";
-		CustomImage tex(str.c_str());
-		EneTexID[numImg] = tex.GenTexture();
-		EnemyDraw();
+		
+		//EnemyDraw();
 	//}
+	string str = "images/SM_0.bmp";
+	CustomImage tex(str.c_str());
+	EneTexID = tex.GenTexture();
 }
 
 void Enemy::EnemyDraw() {
 
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, EneTexID[numImg]);
+	glBindTexture(GL_TEXTURE_2D, EneTexID);
 
 	glPushMatrix();
 	glBegin(GL_POLYGON);

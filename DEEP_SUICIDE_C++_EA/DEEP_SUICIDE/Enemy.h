@@ -1,6 +1,7 @@
 #include "GL/freeglut.h"
 #pragma once
-
+#include <string>
+#include <iostream>
 class Enemy
 {
 public:
@@ -9,14 +10,14 @@ public:
 public:
 	float color = (rand() % 255 + 1)*0.01;
 	bool isActive = false;
-	int HP = 1;
+	int HP = 15;
 	int x, y;
 	float x_Speed = 0;
 	float y_Speed = 0;
-	int Dmg = 2;
+	int Dmg = 1;
 	float atkSpeed = 5.0f;
 
-	GLuint EneTexID[16];
+
 	float counter = 100;
 	int numImg = 0;
 
@@ -35,5 +36,7 @@ public :
 	void playSound();
 	void EnemyCounter();
 	void EnemyInit();
+	GLuint EneTexID;
+
 };
 
